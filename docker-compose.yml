@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres_container:
+    image: postgres:15-alpine
+    container_name: postgres_127
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "22127:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
+  pgadmin_container:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_127
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "44127:80"
+    depends_on:
+      - postgres_container
+    restart: always
+
+volumes:
+  pgdata:
