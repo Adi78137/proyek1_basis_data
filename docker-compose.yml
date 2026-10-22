@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
   postgres_container:
     image: postgres:15-alpine
-    container_name: postgres_127
+    container_name: postgres_adikarunia
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -15,8 +13,8 @@ services:
     restart: always
 
   pgadmin_container:
-    image: dpage/pgadmin4:latest
-    container_name: pgadmin_127
+    image: dpage/pgadmin4:8.14
+    container_name: pgadmin_adikarunia
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
